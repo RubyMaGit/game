@@ -6,7 +6,7 @@ public class MyGame {
 
 	/**
 	 * @param args
-	 * CLASSIC ´ú±íĞ¡¶¯ÎïÊı£»SIZE´ú±íÇ©¿ÉÈİÄÉµÄÔªËØ¸öÊı£»WIDTHºÍHEIGHT´ú±íÃæ°åµÄ³¤*¿í
+	 * CLASSIC ä»£è¡¨å°åŠ¨ç‰©æ•°ï¼›SIZEä»£è¡¨ç­¾å¯å®¹çº³çš„å…ƒç´ ä¸ªæ•°ï¼›WIDTHå’ŒHEIGHTä»£è¡¨é¢æ¿çš„é•¿*å®½
 	 */
 	final static int CLASSIC= 4;
 	final static int SIZE=6;
@@ -16,10 +16,17 @@ public class MyGame {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		
+		//ç”Ÿæˆboard
 		int[][] Data =new int[WIDTH][HEIGHT];
-		CreateBoard(Data);
+		for (int i=0; i<WIDTH; i++)
+		{
+			for(int j=0; j< HEIGHT; j++)
+			{
+				Data[i][j]= (int)(Math.random()*CLASSIC);
+			}
+		}	
 		
+		//æ‰“å°board
 		System.out.println("*************************************" );
 		for (int i=WIDTH-1; i>=0; i--)
 		{
@@ -32,7 +39,7 @@ public class MyGame {
 		System.out.println("*************************************" );
 		
 		
-       //list´ú±íÇ©¡£mark°ïÖúÅĞ¶Ïµ±Ç°´ÁÈ¡µÄÔªËØºÍÇ°Ò»¸öÔªËØµÄÖµÊÇ·ñÏàµÈ£¬Èç¹ûÏàµÈÔòÎªtrue£»currentÓÃÀ´Ö¸Ê¾´ÁÈ¡µÄÔªËØÔÚlistÀïµÄindex£»
+       //listä»£è¡¨ç­¾ã€‚markå¸®åŠ©åˆ¤æ–­å½“å‰æˆ³å–çš„å…ƒç´ å’Œå‰ä¸€ä¸ªå…ƒç´ çš„å€¼æ˜¯å¦ç›¸ç­‰ï¼Œå¦‚æœç›¸ç­‰åˆ™ä¸ºtrueï¼›currentç”¨æ¥æŒ‡ç¤ºæˆ³å–çš„å…ƒç´ åœ¨listé‡Œçš„indexï¼›
 		ArrayList<Integer> list=new ArrayList<Integer>();
 		boolean mark=false;	
 		int current=-1;
@@ -44,13 +51,14 @@ public class MyGame {
 		{
  
 				try{
+					
 					System.out.println("Please input your select, like 0,0: ");
 					String s = input.next() ;        
 					String[] nums = s.split(",") ;        
 					int row = Integer.parseInt(nums[0]) ;        
 					int column = Integer.parseInt(nums[1]) ; 
 					
-					//Èç¹û´ÁÈ¡µÄ²»ÊÇ×îÏÂÃæµÄÔªËØ£¬ÔòÖØĞÂ´ÁÈ¡;Èç¹û´ÁÈ¡µÄÊÇÒÑ¾­Ñ¡Ôñ¹ıµÄÔªËØ£¬Ò²ÖØĞÂ´ÁÈ¡
+					//å¦‚æœæˆ³å–çš„ä¸æ˜¯æœ€ä¸‹é¢ä¸€è¡Œçš„å…ƒç´ ï¼Œåˆ™é‡æ–°æˆ³å–;å¦‚æœæˆ³å–çš„æ˜¯å·²ç»é€‰æ‹©è¿‡çš„å…ƒç´ ï¼Œä¹Ÿé‡æ–°æˆ³å–
 					if(row>0 && Data[row-1][column]!=-1)
 					{
 						System.out.println("test1: The location can't be reached, please input it again: ");
@@ -59,23 +67,11 @@ public class MyGame {
 						System.out.println("test2: The location has been selected, please input it again: ");
 					}
 					 else				
-						 {System.out.println("Adding one item... ");
+						 {System.out.println("Adding " +Data[row][column]);
 						 list.add(Data[row][column]);
 					      current=current+1;
-					      //System.out.println("The current location is ..."+current);
+					      //System.out.println("test4: The current location is ..."+current);
 					      Data[row][column]=-1;	
-							
-					      //Èç¹ûÔËĞĞÏÂÃæ´úÂë£¬ÆÚÍû´òÓ¡µ±Ç°Êı×é£¬»áÏÔÊ¾³ı¸Õ²ÅÑ¡ÔñµÄÔªËØÖ®Íâ£¬ËùÓĞµÄÔªËØÖµ¶¼Îª0 
-//					      System.out.println("*************************************" );
-//							for (int i=WIDTH-1; i>=0; i--)
-//							{
-//								for(int j=HEIGHT-1; j>=0; j--)
-//								{
-//									System.out.print("("+i+","+j+")"+Data[i][j]+" ");
-//								}
-//								System.out.println( );
-//							}
-//							System.out.println("*************************************" );
 						 }
 
 			}
@@ -85,7 +81,7 @@ public class MyGame {
 				}
 				
 		
-				//Èç¹ûµ±Ç°Ç©ÉÏÔªËØ´óÓÚÁ½¸ö£¬½øĞĞ±È½Ï£»Èç¹ûµ±Ç°ÔªËØÓëÇ°Ò»¸öÔªËØÖµÏàµÈ£¬ÇÒmarkÎªtrue£¬Ôò±íÃ÷×î½üÈı¸öÔªËØÖµ¾ùÏàµÈ£¬Ö´ĞĞÉ¾³ı²Ù×÷
+				//å¦‚æœå½“å‰ç­¾ä¸Šå…ƒç´ å¤§äºä¸¤ä¸ªï¼Œè¿›è¡Œæ¯”è¾ƒï¼›å¦‚æœå½“å‰å…ƒç´ ä¸å‰ä¸€ä¸ªå…ƒç´ å€¼ç›¸ç­‰ï¼Œä¸”markä¸ºtrueï¼Œåˆ™è¡¨æ˜æœ€è¿‘ä¸‰ä¸ªå…ƒç´ å€¼å‡ç›¸ç­‰ï¼Œæ‰§è¡Œåˆ é™¤æ“ä½œ
 				if(current>0){
 					if(list.get(current).equals(list.get(current-1))&& mark==true)
 					{
@@ -97,58 +93,35 @@ public class MyGame {
 						mark=false;
 						current= current-3;
 					}
-					//Èç¹ûÖ»ÊÇµ±Ç°ÔªËØÓëÇ°Ò»¸öÔªËØÖµÏàµÈ£¬markÎªfalse£¬ÔòĞŞ¸ÄmarkÎªtrue
+					//å¦‚æœåªæ˜¯å½“å‰å…ƒç´ ä¸å‰ä¸€ä¸ªå…ƒç´ å€¼ç›¸ç­‰ï¼Œmarkä¸ºfalseï¼Œåˆ™ä¿®æ”¹markä¸ºtrue
 					else if (list.get(current).equals(list.get(current-1))&&mark==false)
 					{
 						mark=true;
-						System.out.println("Change the mark label to true");
+						System.out.println("test 5: Change the mark label to true");
 					
 					}
 					else 
 					  {mark =false;}
 				}
                
-				continue;
-					
-				}
-		
+			    //æ‰“å°board
+			      System.out.println("*************************************" );
+					for (int i=WIDTH-1; i>=0; i--)
+					{
+						for(int j=HEIGHT-1; j>=0; j--)
+						{
+							System.out.print("("+i+","+j+")"+Data[i][j]+" ");
+						}
+						System.out.println( );
+						
+					}
+					System.out.println("*************************************" );
+				continue;				
+				}		
 		    input.close();
 		    System.out.println("Game Over!!");
-		    System.out.println(list);
 						
 		}
 
-
-
-	//Create Board;
-	public static int[][] CreateBoard(int[][] Array)
-	{
-		
-		int[][] Data =new int[WIDTH][HEIGHT];
-		
-		for (int i=0; i<WIDTH; i++)
-		{
-			for(int j=0; j< HEIGHT; j++)
-			{
-				Data[i][j]= (int)(Math.random()*CLASSIC);
-			}
-		}
-		
-		System.out.println("*************************************" );
-		for (int i=WIDTH-1; i>=0; i--)
-		{
-			for(int j=HEIGHT-1; j>=0; j--)
-			{
-				System.out.print("("+i+","+j+")"+Data[i][j]+" ");
-			}
-			System.out.println( );
-		}
-		System.out.println("*************************************" );
-		
-		return Data;
-		
-		
-		
-	}
 
 }
