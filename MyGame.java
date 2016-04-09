@@ -17,28 +17,10 @@ public class MyGame {
 		// TODO Auto-generated method stub
 		
 		//生成board
-		int[][] Data =new int[WIDTH][HEIGHT];
-		for (int i=0; i<WIDTH; i++)
-		{
-			for(int j=0; j< HEIGHT; j++)
-			{
-				Data[i][j]= (int)(Math.random()*CLASSIC);
-			}
-		}	
+		int[][] Data = CreateBoard(WIDTH, HEIGHT);
 		
-		//打印board
-		System.out.println("*************************************" );
-		for (int i=WIDTH-1; i>=0; i--)
-		{
-			for(int j=HEIGHT-1; j>=0; j--)
-			{
-				System.out.print("("+i+","+j+")"+Data[i][j]+" ");
-			}
-			System.out.println( );
-		}
-		System.out.println("*************************************" );
-		
-		
+		PrintBoard(Data);
+			
        //list代表签。mark帮助判断当前戳取的元素和前一个元素的值是否相等，如果相等则为true；current用来指示戳取的元素在list里的index；
 		ArrayList<Integer> list=new ArrayList<Integer>();
 		boolean mark=false;	
@@ -102,26 +84,48 @@ public class MyGame {
 					}
 					else 
 					  {mark =false;}
-				}
-               
-			    //打印board
-			      System.out.println("*************************************" );
-					for (int i=WIDTH-1; i>=0; i--)
-					{
-						for(int j=HEIGHT-1; j>=0; j--)
-						{
-							System.out.print("("+i+","+j+")"+Data[i][j]+" ");
-						}
-						System.out.println( );
-						
-					}
-					System.out.println("*************************************" );
-				continue;				
 				}		
-		    input.close();
-		    System.out.println("Game Over!!");
-						
+				
+				PrintBoard(Data);
+				continue;				
+		}		
+       input.close();
+       System.out.println("Game Over!!");
+	
+	}
+		
+        //生成board 
+	public static int[][] CreateBoard(int wdith, int height)
+	{
+		int[][] Data = new int[wdith][height];
+		
+		for (int i=0; i<wdith; i++)
+		{
+			for(int j=0; j<height; j++)
+			{
+				Data[i][j]= (int)(Math.random()*3);
+			}
 		}
-
-
-}
+		
+		return Data;
+	}
+	
+	//打印Board
+	public static void PrintBoard(int[][] Data)
+	{
+	
+		System.out.println("*************************************" );
+		
+		for (int i=Data.length-1; i>=0; i--)
+		{
+			for(int j= Data[i].length-1; j>=0; j--)
+			{
+				System.out.print("("+i+","+j+")"+Data[i][j]+" ");
+			}
+			System.out.println( );
+		}
+		System.out.println("*************************************" );	
+	}
+		
+		
+	}
