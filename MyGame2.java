@@ -34,6 +34,7 @@ public class MyGame2 {
                 continue;
 
             Updatelist();
+            UpdateBoard();
         }
         input.close();
         System.out.println("Game Over!!");
@@ -149,6 +150,31 @@ public class MyGame2 {
                 mark =false;
             }
         }
+    }
+
+    public static void UpdateBoard()
+    {
+        if( CheckBoard() == true) {
+            Data[0] = Data[1];
+            Data[1] = Data[2];
+            Data[2] = Data[3];
+            Data[3] = Data[4];
+
+        }
+    }
+
+    private static boolean CheckBoard()
+    {
+        for (int i=0; i<1 ; i++)
+        {
+            for(int j= Data[i].length-1; j>=0; j--)
+            {
+                if (Data[i][j] != -1) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
 
